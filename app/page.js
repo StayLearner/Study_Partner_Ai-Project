@@ -9,7 +9,7 @@ export default function Home() {
       <div>
       <h2> Hello this is my new project </h2>
       {/* <Button variant="outline"> Click Me </Button> */}
-      <Button> Click Here </Button>
+      <Button> Click </Button>
     </div>
   );
 }
