@@ -7,7 +7,7 @@ function SelectOption() {
   const Options=[
     {
         name:'Exam',
-        icon:'/exam_1.png'
+        icon:'/exam.png'
     },
     {
         name:'Job Interview',
@@ -30,7 +30,7 @@ function SelectOption() {
  const [selectedOption,setSelectedOption]=useState();
 
   return (
-    <div>
+    <div className='p-10'>
         <h2 className='text-center mb-2 text-lg'>For Which You Want to Create Your Study Material?</h2>
         <div className='grid grid-cols-2 mt-5 md:grid-cols-3 lg:grid-cols-5 gap-5'>
             {Options.map((option,index)=>(
