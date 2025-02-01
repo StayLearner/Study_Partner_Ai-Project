@@ -45,7 +45,7 @@ function Provider({ children }) {
         //     console.log(userResp);
         // }
 
-        const resp= await axios.post('/api/create-user',{user:user});
+        const resp=  axios.post('/api/create-user',{user:user});
         console.log(resp.data);
 
     }
@@ -59,5 +59,4 @@ function Provider({ children }) {
 }
 
 export default Provider
-
 

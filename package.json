@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.5.0",
+    "@clerk/nextjs": "^6.9.5",
     "@google/generative-ai": "^0.21.0",
     "@neondatabase/serverless": "^0.10.3",
     "@radix-ui/react-progress": "^1.1.0",
@@ -20,11 +20,11 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.4",
-    "inngest": "^3.26.2",
+    "inngest": "^3.28.0",
     "lucide-react": "^0.456.0",
-    "next": "15.0.3",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "^15.1.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^11.0.3"

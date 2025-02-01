@@ -1,4 +1,4 @@
-import { json } from "drizzle-orm/mysql-core";
+// import { json } from "drizzle-orm/mysql-core";
 import { boolean, serial, varchar,pgTable, jsonb } from "drizzle-orm/pg-core";
 
 
@@ -22,12 +22,3 @@ export const STUDY_MATERIAL_TABLE = pgTable('studyMaterial', {
   
 
 
-// import { boolean, serial, varchar, pgTable, timestamp } from "drizzle-orm/pg-core";
-
-// export const USER_TABLE = pgTable('users', {
-//     id: serial('id').primaryKey(),
-//     name: varchar('name').notNull(),
-//     email: varchar('email').notNull(),
-//     isMember: boolean('is_member').default(false),
-//     createdAt: timestamp('created_at').defaultNow().notNull(),
-// });
