@@ -6,7 +6,7 @@
  * querying the database using the `db` connection. If the user is not found in the database, their
  * information is inserted into the `USER_TABLE`.
  */
-'use client'
+"use client"
 
 import { db } from '@/configs/db';
 import { USER_TABLE } from '@/configs/schema';
