@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
-import { RefreshCcw } from 'lucide-react'
+import { RefreshCcw, RefreshCw } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
@@ -22,7 +22,7 @@ function CourseCardItem({course}) {
        <div className='mt-3 flex justify-end'>
         {course?.status=='Generating'?
         <h2 className='text-sm p-1 px-2 flex gap-2 items-center rounded-full bg-gray-400 text-white'>
-          <RefreshCcw className='h-5 w-5'/>
+          <RefreshCw className='h-5 w-5 animate-spin'/>
           Generating. . .</h2> 
            :<Button className="bg-teal-300">View</Button>}
        </div>
