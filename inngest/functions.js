@@ -1,6 +1,6 @@
 import { db } from "@/configs/db";
 import { inngest } from "./client";
-import { CHAPTER_NOTES_TABLE, USER_TABLE } from "@/configs/schema";
+import { CHAPTER_NOTES_TABLE, STUDY_MATERIAL_TABLE, USER_TABLE } from "@/configs/schema";
 import { eq } from "drizzle-orm";
 import { generateNotesAiModel } from "@/configs/AiModel";
 
@@ -71,7 +71,7 @@ export const CreateNewUser = inngest.createFunction(
   // Step is to send email notification
 
   //send email notification after 3 days
-)
+);
 
 
 
@@ -86,25 +86,25 @@ inngest.createFunction({id:'generate-course'},{event:'notes.generate'}, async({e
 of calling the `inngest.createFunction` function. This function is creating a function with the ID
 "generate-course" that listens for the event "notes.generate". */
 
-export const GenerateNotes=inngest.createFunction(
+export const GenerateNotes = inngest.createFunction(
   {id:'generate-course'},
   {event:'notes.generate'},
   async({event,step})=>{
    const {course}= event.data;
 
    const notesResult=await step.run('Generate Chapter Notes',async()=> {
-    const Chapters=course?.courselayout;
+    const Chapters=course?.courselayout?.chapters;
     let index=0;
     Chapters.forEach(async(chapter) => {
     const PROMPT='Generate exam material detail content for each chapter , Make sure to includes all topic point in the content, make sure to give content in HTML format (Do not Add HTML , Head, Body, title tag), The chapters :' +JSON.stringify(chapter);  
      
     const result= await generateNotesAiModel.sendMessage(PROMPT);
-    const aiResp= result.response.text();
+    const aiRespn= result.response.text();
 
     await db.insert(CHAPTER_NOTES_TABLE).values({
       chapterId:index,
       courseId:course?.courseId,
-      notes:aiResp
+      notes:aiRespn
     })
 
     index=index+1;
@@ -113,10 +113,20 @@ export const GenerateNotes=inngest.createFunction(
 
     return 'Completed'
    })
-  }
-)
+  
 
 
 
 
+//Update status change to ready Status
 
+const updateCourseStatusResult= await step.run('Update Course status to ready',async()=>{
+
+  const result= await db.update(STUDY_MATERIAL_TABLE).set({
+    status:'Ready'
+  }) .where(eq(STUDY_MATERIAL_TABLE.courseId,course?.courseId))
+
+  return 'Success';
+})
+
+  });
