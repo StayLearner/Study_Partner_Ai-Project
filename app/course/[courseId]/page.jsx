@@ -4,6 +4,7 @@ import DashboardHeader from '@/app/dashboard/_components/DashboardHeader';
 import axios from 'axios';
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import CourseIntroCard from './_components/CourseIntroCard';
 
 function Course() {
 
@@ -22,17 +23,14 @@ function Course() {
     return (
     <div>
         <DashboardHeader/>
-
-        // Course Intro
-
-
-        //Study Materials Options
-
-
-
-        // Chapter List
+        <div className='mx-10 md:mx-36 lg:px-60 mt-10'>
+        
+        <CourseIntroCard course={course} />
 
         
+
+
+       </div>
     </div>
   )
 }
