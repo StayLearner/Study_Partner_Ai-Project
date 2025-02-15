@@ -13,7 +13,7 @@ function StudyMaterialSection() {
     },
     {
         name:'Flashcard',
-        description:'Flashcard help to remember the concepts',
+        description:'Flashcards for remember concepts',
         icon:'/Flashcard.png',
         path:'/flashcards'
     },
@@ -36,7 +36,7 @@ function StudyMaterialSection() {
     <div className='mt-5'>
         <h2 className='font-medium text-xl'>Study Material</h2>
     
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-5'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-5 mt-3'>
             {MaterialList.map((item,index)=>(
                 <MaterialCardItem key={index} item={item}/>
             ))}
