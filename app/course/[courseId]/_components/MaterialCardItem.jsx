@@ -2,9 +2,11 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import React from 'react'
 
-function MaterialCardItem({item}) {
+function MaterialCardItem({item, studyTypeContent }) {
   return (
-    <div className='border shadow-md rounded-lg p-5 flex flex-col items-center'>
+    <div className={`border shadow-md rounded-lg p-5 flex flex-col items-center
+     ${}
+    `}>
       <h2 className='p-1 px-1 py-1 bg-green-500 text-white rounded-full text-[10px]n mb-2'>Ready</h2>
       <Image src={item.icon} alt={item.name}  width={50} height={50}/>
       
