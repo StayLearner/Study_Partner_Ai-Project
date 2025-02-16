@@ -11,7 +11,7 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
     const {courseId,topic,courseType,difficultyLevel,createdBy}=await req.json();
 
-    const PROMPT='Generate a study Material for '+topic+' for '+courseType+' and level of difficulty will be '+difficultyLevel+'  with summary of course and a title of course, List of Chapters along with summary for each chapter, Topic list in each chapter in JSON format'
+    const PROMPT='Generate a study Material for '+topic+' for '+courseType+' and level of difficulty will be '+difficultyLevel+'  with summary of course and a title of course and give a emoji icon for each Chapter not with title, List of Chapters along with summary for each chapter, Topic list in each chapter in JSON format'
     
     //Generate course Layout using AI
      const aiResp=await courseOutlineAIModel.sendMessage(PROMPT);

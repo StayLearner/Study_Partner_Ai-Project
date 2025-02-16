@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import CourseIntroCard from './_components/CourseIntroCard';
 import StudyMaterialSection from './_components/StudyMaterialSection';
+import ChapterList from './_components/ChapterList';
 
 function Course() {
 
@@ -30,6 +31,7 @@ function Course() {
 
         <StudyMaterialSection/>
         
+         <ChapterList course={course}/>
 
 
        </div>

@@ -41,7 +41,6 @@ function StudyMaterialSection() {
                 <MaterialCardItem key={index} item={item}/>
             ))}
 
-            {/* <MaterialCardItem/> */}
         </div>
     </div>
   )
