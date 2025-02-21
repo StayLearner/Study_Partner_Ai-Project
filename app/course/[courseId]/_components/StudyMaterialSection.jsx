@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import MaterialCardItem from './MaterialCardItem'
 import axios from 'axios'
+import Link from 'next/link';
 
 
-function StudyMaterialSection(courseId) {
+function StudyMaterialSection({courseId}) {
 
      const [studyTypeContent,setStudyTypeContent] =useState();    
 
@@ -34,23 +35,26 @@ function StudyMaterialSection(courseId) {
         description:'Help to practice your learning',
         icon:'/qa.png',
         path:'/qa',
-        type:'/qa'
+        type:'qa'
     }
    ]
       
-     useEffect(() => {
-        GetStudyMaterial();
-     },[])
 
-   const GetStudyMaterial=async() => {
-    const result=await axios.post('/api/study-type',{
+   const GetStudyMaterial=async()=>{
+    const result = await axios.post('/api/study-type',{
+        
+        
         courseId:courseId,
         studyType:'ALL'
     })
-       console.log(result?.data)
+       console.log('API response',result?.data)
       setStudyTypeContent(result.data)
    }
 
+
+   useEffect(() => {
+    GetStudyMaterial();
+ },[courseId])
 
   return (
     <div className='mt-5'>
@@ -58,8 +62,11 @@ function StudyMaterialSection(courseId) {
     
         <div className='grid grid-cols-2 md:grid-cols-4 gap-5 mt-3'>
             {MaterialList.map((item,index)=>(
+
+                <Link key={index} href={'/course/'+courseId+item.path}>
                 <MaterialCardItem key={index} item={item}
                 studyTypeContent={studyTypeContent} />
+                </Link>
             ))}
 
         </div>
