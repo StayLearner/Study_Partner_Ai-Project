@@ -98,3 +98,29 @@ const generationConfig2 ={
     ]
   })
 
+
+
+
+
+
+
+
+
+  export const GenerateQuizAiModel = model.startChat({
+    generationConfig,
+    history: [
+      {
+        role: "user",
+        parts: [
+          {text: "Generate Quiz on Topic : Flutter Fundamentals, User Interface (UI) Development  with Question and Options along with correct answer in JSON format (MAX 10)\n"},
+        ],
+      },
+      {
+        role: "model",
+        parts: [
+          {text: "```json\n{\n  \"quizTitle\": \"Flutter Fundamentals and UI Development\",\n  \"questions\": [\n    {\n      \"question\": \"What is the primary programming language used in Flutter development?\",\n      \"options\": [\"Java\", \"Kotlin\", \"Dart\", \"Swift\"],\n      \"correctAnswer\": \"Dart\"\n    },\n    {\n      \"question\": \"Which widget is the root of the Flutter widget tree?\",\n      \"options\": [\"Column\", \"Row\", \"Scaffold\", \"Center\"],\n      \"correctAnswer\": \"Scaffold\"\n    },\n    {\n      \"question\": \"What is the purpose of a StatelessWidget in Flutter?\",\n      \"options\": [\"To build a dynamic UI that changes based on user interaction\", \"To build a static UI that doesn't change after it's built\", \"To manage application state\", \"To handle asynchronous operations\"],\n      \"correctAnswer\": \"To build a static UI that doesn't change after it's built\"\n    },\n    {\n      \"question\": \"Which widget is used to arrange widgets horizontally?\",\n      \"options\": [\"Column\", \"Row\", \"Stack\", \"Container\"],\n      \"correctAnswer\": \"Row\"\n    },\n    {\n      \"question\": \"Which widget is used to arrange widgets vertically?\",\n      \"options\": [\"Column\", \"Row\", \"Stack\", \"Container\"],\n      \"correctAnswer\": \"Column\"\n    },\n    {\n      \"question\": \"What does the `BuildContext` provide in Flutter?\",\n      \"options\": [\"The current state of the application\", \"Access to the widget tree\", \"The theme of the application\", \"The device's screen size\"],\n      \"correctAnswer\": \"Access to the widget tree\"\n    },\n    {\n      \"question\": \"What is the purpose of a StatefulWidget in Flutter?\",\n      \"options\": [\"To build a static UI\", \"To manage the state of a widget\", \"To handle routing\", \"To perform network requests\"],\n      \"correctAnswer\": \"To manage the state of a widget\"\n    },\n    {\n      \"question\": \"Which widget is used to add padding around a widget?\",\n      \"options\": [\"Container\", \"Padding\", \"SizedBox\", \"Center\"],\n      \"correctAnswer\": \"Padding\"\n    },\n    {\n      \"question\": \"How do you define a key for a widget?\",\n      \"options\": [\"Using the `key` property in the widget constructor\", \"Using a separate `Key` variable\", \"It's automatically assigned\", \"Using the `id` property\"],\n      \"correctAnswer\": \"Using the `key` property in the widget constructor\"\n    },\n      {\n      \"question\": \"What is the purpose of a `FutureBuilder` in Flutter?\",\n      \"options\": [\"To build UI that depends on asynchronous operations\", \"To manage state\", \"To perform network requests\", \"To handle user input\"],\n      \"correctAnswer\": \"To build UI that depends on asynchronous operations\"\n    }\n  ]\n}\n```\n"},
+        ],
+      },
+    ],
+  })
+

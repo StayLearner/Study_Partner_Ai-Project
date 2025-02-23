@@ -28,6 +28,7 @@ const ViewNotes = () => {
 
     content = content.replace(/^\{.*?"content":\s*"/, ""); 
     content = content.replace(/^\{.*?"htmlContent":\s*"/, "");
+    content = content.replace(/^\{.*?"chaptersContent":\s*"/, "");
 
     content = content.replace(/"}$/, "");
 

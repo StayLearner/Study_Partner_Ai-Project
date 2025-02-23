@@ -2,7 +2,7 @@ import { db } from "@/configs/db";
 import { inngest } from "./client";
 import { CHAPTER_NOTES_TABLE, STUDY_MATERIAL_TABLE, STUDY_TYPE_CONTENT_TABLE, USER_TABLE } from "@/configs/schema";
 import { eq } from "drizzle-orm";
-import { generateNotesAiModel, GenerateStudyTypeContentAiModel } from "@/configs/AiModel";
+import { generateNotesAiModel, GenerateQuizAiModel, GenerateStudyTypeContentAiModel } from "@/configs/AiModel";
 
 /* This code snippet is exporting a constant named `helloWorld` which is assigned the result of calling
 the `inngest.createFunction` function. This function is creating a function with the ID
@@ -131,6 +131,12 @@ const updateCourseStatusResult= await step.run('Update Course status to ready',a
 
 
 
+
+
+
+
+
+
 export const GenerateStudyTypeContent=inngest.createFunction(
   {id:'Generate Study Type Content'},
   {event:'studyType.Content'},
@@ -138,9 +144,15 @@ export const GenerateStudyTypeContent=inngest.createFunction(
   async ({event,step}) => {
      const {studyType,prompt,courseId,recordId}= event.data;
 
-     const FlashcardAiResult= await step.run('Generating Flashcard using AI',async()=> {
+
+     
+     const AiResult= await step.run('Generating Flashcard using AI',async()=> {
        
-        const result= await GenerateStudyTypeContentAiModel.sendMessage(prompt);
+
+        const result= 
+        studyType=='FlashCard'?
+        await GenerateStudyTypeContentAiModel.sendMessage(prompt):
+        await GenerateQuizAiModel.sendMessage(prompt);
         const AIResult= JSON.parse(result.response.text());
         return AIResult;
      })
@@ -149,7 +161,7 @@ export const GenerateStudyTypeContent=inngest.createFunction(
       const DbResult=await step.run('Save Result to DB',async () => {
          const result=await db.update(STUDY_TYPE_CONTENT_TABLE)
          .set({
-           content:FlashcardAiResult,
+           content:AiResult,
            status:'Ready'
          }).where(eq(STUDY_TYPE_CONTENT_TABLE.id,recordId))
 

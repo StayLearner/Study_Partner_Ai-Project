@@ -32,7 +32,7 @@ export const STUDY_MATERIAL_TABLE = pgTable('studyMaterial', {
   export const STUDY_TYPE_CONTENT_TABLE=pgTable('studyTypeContent',{
     id:serial().primaryKey(),
     courseId:varchar().notNull(),
-    content:json(),
+    content:jsonb(),
     type:varchar().notNull(),
     status:varchar().default('Generating')
   })
