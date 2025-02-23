@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
+import VantaBackground from "../_components/VantaClousBackground";
 
 const ViewNotes = () => {
   const { courseId } = useParams();
@@ -42,7 +43,9 @@ const ViewNotes = () => {
 
   if (!notes || !notes[stepCount]) return null;
 
-  return (
+  return ( 
+     <div className="relative">
+      {/* <VantaBackground/> */}
     <div className="max-w-4xl mx-auto p-6">
       {/* Navigation */}
       <div className="flex gap-4 items-center mb-6">
@@ -94,6 +97,7 @@ const ViewNotes = () => {
           </button>
         </div>
       )}
+    </div>
     </div>
   );
 };

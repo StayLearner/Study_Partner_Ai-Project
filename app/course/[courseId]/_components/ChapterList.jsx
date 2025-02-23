@@ -4,7 +4,7 @@ function ChapterList({course}) {
   const CHAPTERS = course?.courselayout?.chapters;
   return (
     <div className="mt-5">
-      <h2 className="font-medium text-xl">Chapters</h2>
+      <h2 className="font-medium text-2xl ">Chapters</h2>
       <div 
       className="mt-3">
         {CHAPTERS?.map((chapter , index) => (
@@ -17,7 +17,7 @@ function ChapterList({course}) {
               <h2 className="font-medium">
                 {chapter?.courselayout?.chapterTitle}
               </h2>
-              <p className="text-gray-400 text-sm">{chapter?.chapterSummary}</p>
+              <p className="text-black text-base">{chapter?.chapterSummary}</p>
             </div>
           </div>
         ))}

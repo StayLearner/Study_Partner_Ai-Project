@@ -7,6 +7,10 @@ import React, { useEffect, useState } from 'react'
 import CourseIntroCard from './_components/CourseIntroCard';
 import StudyMaterialSection from './_components/StudyMaterialSection';
 import ChapterList from './_components/ChapterList';
+import VantaBackground from './_components/VantaClousBackground';
+
+
+
 
 function Course() {
 
@@ -24,9 +28,10 @@ function Course() {
   
     return (
     <div>
-
+      
+       <VantaBackground/>
         <div className=''>
-        
+          
         <CourseIntroCard course={course} />
 
         <StudyMaterialSection courseId={courseId} course={course}/>
