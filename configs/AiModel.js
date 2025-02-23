@@ -18,8 +18,16 @@ const generationConfig = {
   topK: 40,
   maxOutputTokens: 8192,
   responseMimeType: "application/json",
-  // responseMimeType: "text/plain",
 };
+
+const generationConfig2 ={
+  temperature: 1,
+  topP: 0.95,
+  topK: 40,
+  maxOutputTokens: 8192,
+  responseMimeType: "text/plain",
+};
+
 
 
   export const courseOutlineAIModel = model.startChat({
@@ -48,7 +56,6 @@ const generationConfig = {
 
 
 
-
   export const generateNotesAiModel = model.startChat({
     generationConfig,
     history: [
@@ -67,4 +74,25 @@ const generationConfig = {
     ],
   });
 
+
+
+
+
+  export  const GenerateStudyTypeContentAiModel = model.startChat({
+    generationConfig,
+    history: [
+      {
+        role: "user",
+        parts: [
+          {text: "Generate the flashcard on topic : Flutter Fundamentals,User Interface (UI) Development,Basic App Navigation in JSON format with front back Content, Maximum 15"},
+        ],
+      },
+      {
+        role: "model",
+        parts: [
+          {text: "```json\n[\n  {\n    \"front\": \"What is a Widget in Flutter?\",\n    \"back\": \"The fundamental building block of a Flutter UI.  Everything visible on the screen is a widget.\"\n  },\n  {\n    \"front\": \"What are the two main types of widgets?\",\n    \"back\": \"StatelessWidget and StatefulWidget.\"\n  },\n  {\n    \"front\": \"What is the difference between StatelessWidget and StatefulWidget?\",\n    \"back\": \"StatelessWidget doesn't change its state over time, while StatefulWidget can update its UI based on changes in its state.\"\n  },\n  {\n    \"front\": \"Name three common layout widgets.\",\n    \"back\": \"Row, Column, and Stack.\"\n  },\n  {\n    \"front\": \"What is a `Scaffold` widget?\",\n    \"back\": \"Provides a basic visual layout structure for an app, including an AppBar, body, and potentially a bottomNavigationBar.\"\n  },\n  {\n    \"front\": \"What widget is used to display text?\",\n    \"back\": \"Text\"\n  },\n  {\n    \"front\": \"How do you navigate to a new screen in Flutter?\",\n    \"back\": \"Using `Navigator.push()`.\"\n  },\n  {\n    \"front\": \"How do you pop a screen from the navigation stack?\",\n    \"back\": \"Using `Navigator.pop()`.\"\n  },\n  {\n    \"front\": \"What is a `Route` in Flutter?\",\n    \"back\": \"Represents a single screen or page in your app's navigation history.\"\n  },\n  {\n    \"front\": \"What is `MaterialApp`?\",\n    \"back\": \"A widget that provides Material Design styling and navigation capabilities to your app.\"\n  },\n  {\n    \"front\": \"What is the purpose of `BuildContext`?\",\n    \"back\": \"Provides information about the widget's location in the widget tree and allows access to various services.\"\n  },\n  {\n    \"front\": \"How do you pass data to a new screen during navigation?\",\n    \"back\": \"Using arguments with `Navigator.pushNamed()` or `Navigator.push()`.\"\n  },\n  {\n    \"front\": \"What is a `Key` in Flutter?\",\n    \"back\": \"Used to uniquely identify widgets, especially helpful when rebuilding parts of the UI.\"\n  },\n  {\n    \"front\": \"What is a `Container` widget?\",\n    \"back\": \"A widget that allows you to control the size, padding, margin, and decoration of a widget's children.\"\n  },\n  {\n    \"front\": \"What is the purpose of `setState()`?\",\n    \"back\": \"To rebuild the UI of a StatefulWidget after its state has changed.\"\n  }\n]\n```\n"},
+        ],
+      },
+    ]
+  })
 
