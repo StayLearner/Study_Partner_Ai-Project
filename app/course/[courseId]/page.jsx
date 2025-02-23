@@ -24,7 +24,7 @@ function Course() {
   
     return (
     <div>
-        <DashboardHeader/>
+
         <div className=''>
         
         <CourseIntroCard course={course} />
