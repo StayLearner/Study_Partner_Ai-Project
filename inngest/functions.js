@@ -133,26 +133,25 @@ const updateCourseStatusResult= await step.run('Update Course status to ready',a
 
 export const GenerateStudyTypeContent=inngest.createFunction(
   {id:'Generate Study Type Content'},
-  {event:'studyTypeContent'},
+  {event:'studyType.Content'},
 
   async ({event,step}) => {
-     const {studyType,prompt,courseId}= event.data;
+     const {studyType,prompt,courseId,recordId}= event.data;
 
-     const FlashcardAiResult= await step.run('Generating Flashcard using AI',async () => {
+     const FlashcardAiResult= await step.run('Generating Flashcard using AI',async()=> {
        
         const result= await GenerateStudyTypeContentAiModel.sendMessage(prompt);
         const AIResult= JSON.parse(result.response.text());
-        return AIResult
+        return AIResult;
      })
 
           //Save the Result
       const DbResult=await step.run('Save Result to DB',async () => {
-         const result=await db.insert(STUDY_TYPE_CONTENT_TABLE)
-         .values({
-           courseId:courseId,
-           type:studyType,
-           content:FlashcardAiResult
-         })
+         const result=await db.update(STUDY_TYPE_CONTENT_TABLE)
+         .set({
+           content:FlashcardAiResult,
+           status:'Ready'
+         }).where(eq(STUDY_TYPE_CONTENT_TABLE.id,recordId))
 
            return "Data Inserted"
       })

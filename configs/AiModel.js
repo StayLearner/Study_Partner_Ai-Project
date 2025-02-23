@@ -57,6 +57,8 @@ const generationConfig2 ={
 
 
   export const generateNotesAiModel = model.startChat({
+    //generation 2 needed
+
     generationConfig,
     history: [
       {
