@@ -116,13 +116,13 @@ function StudyMaterialSection({ courseId, course }) {
     //           path:'/flashcards',
     //           type:'flashcard'
     //       },
-    {
-      name: 'Quiz',
-      description: 'Great way to test your knowledge',
-      icon: '/quiz.png',
-      path: '/quiz',
-      type: 'quiz',
-    }
+    // {
+    //   name: 'Quiz',
+    //   description: 'Great way to test your knowledge',
+    //   icon: '/quiz.png',
+    //   path: '/quiz',
+    //   type: 'quiz',
+    // }
   ];
 
   const GetStudyMaterial = async () => {
@@ -133,6 +133,7 @@ function StudyMaterialSection({ courseId, course }) {
       });
 
       console.log('API Response:', result?.data);
+      
       setStudyTypeContent(result.data || {}); // Ensure it's an object
     } catch (error) {
       console.error('Error fetching study materials:', error);

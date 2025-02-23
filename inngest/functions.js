@@ -94,7 +94,7 @@ export const GenerateNotes = inngest.createFunction(
     const Chapters=course?.courselayout?.chapters;
     let index=0;
     Chapters.forEach(async(chapter) => {
-    const PROMPT='Generate exam material detail content for each chapter , Make sure to includes all topic point in the content, make sure to give content in HTML format (Do not Add HTML , Head, Body, title tag), The chapters :' +JSON.stringify(chapter);  
+    const PROMPT='Generate exam material detail content for each chapter , Make sure to includes all topic point in the content, make sure to give content in HTML format but not Add any HTML- Head, HTML Body, HTMl Title tag), The chapters :' +JSON.stringify(chapter);  
      
     const result= await generateNotesAiModel.sendMessage(PROMPT);
     const aiRespn= result.response.text();
@@ -112,7 +112,6 @@ export const GenerateNotes = inngest.createFunction(
     return 'Completed'
    })
   
-
 
 
 
@@ -158,9 +157,8 @@ export const GenerateStudyTypeContent=inngest.createFunction(
      })
 
           //Save the Result
-      const DbResult=await step.run('Save Result to DB',async () => {
-         const result=await db.update(STUDY_TYPE_CONTENT_TABLE)
-         .set({
+      const DbResult=await step.run('Save Result to DB',async() => {
+         const result=await db.update(STUDY_TYPE_CONTENT_TABLE).set({
            content:AiResult,
            status:'Ready'
          }).where(eq(STUDY_TYPE_CONTENT_TABLE.id,recordId))
@@ -168,4 +166,4 @@ export const GenerateStudyTypeContent=inngest.createFunction(
            return "Data Inserted"
       })
   }
-)
+);
