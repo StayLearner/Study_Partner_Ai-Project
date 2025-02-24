@@ -1,6 +1,9 @@
-import React from "react";
+"use client"
+
+import React, { useState } from "react";
 import SideBar from "./_components/SideBar";
 import DashboardHeader from "./_components/DashboardHeader";
+import { CourseCountContext } from "../_context/CourseCountContext";
 
 /**
  * The `DashboardLayout` function is a React component that renders its children within a `div`
@@ -9,7 +12,12 @@ import DashboardHeader from "./_components/DashboardHeader";
  */
 
 function DashboardLayout({ children }) {
+
+  const [totalCourse,setTotalCourse]= useState();
   return (
+      
+    <CourseCountContext.Provider value={{totalCourse,setTotalCourse}}>
+
     <div>
       <div className="md:w-64 hidden md:block fixed">
         <SideBar />
@@ -20,6 +28,7 @@ function DashboardLayout({ children }) {
         <div className="p-10">{children}</div>
       </div>
     </div>
+    </CourseCountContext.Provider>
   );
 }
 

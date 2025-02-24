@@ -36,6 +36,7 @@ const ViewNotes = () => {
       content = content.replace(/^\{.*?"content":\s*"/, ""); 
       content = content.replace(/^\{.*?"htmlContent":\s*"/, "");
       content = content.replace(/^\{.*?"Content":\s*"/, "");
+      content = content.replace(/^\{.*?"chaptersContent":\s*"/, "");
   
       content = content.replace(/"}$/, "");
       // Extract only the JSON part if improperly formatted
