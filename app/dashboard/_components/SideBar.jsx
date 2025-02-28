@@ -8,6 +8,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useContext } from "react";
+import { motion } from "framer-motion";
+
 
 function SideBar() {
   const MenuList = [
@@ -34,15 +36,36 @@ function SideBar() {
   const path = usePathname();
   return (
     <div className='h-screen shadow-md p-5 '>
-      <div className="flex gap-2 items-center">
-        <Image src={"/logo.svg"} alt="logo" width={40} height={40} />
-        <h2 className="font-bold text-xl">Smart Learning</h2>
-      </div>
+    <div className="flex items-center gap-2">
+
+
+    <Link href={'/'} className="w-full">
+  <motion.div 
+    whileHover={{ scale: 1.05 }} 
+    className="flex items-center gap-2"
+  >
+    <Image src="/logo.svg" alt="logo" width={40} height={40} />
+    <h1 className="text-2xl font-bold text-blue-700">Study Smart</h1>
+  </motion.div>
+</Link>
+
+
+
+
+
+    </div>
 
       <div className="mt-10">
-      <Link href={'/create'} className="w-full">
-        <Button className="w-full bg-teal-400">+ Create New</Button>
+
+        <motion.h1
+                className="text-xl font-bold text-white "
+                whileHover={{ scale: 1.05 }}
+              >
+<Link href={'/create'} className="w-full">
+        <Button className="w-full bg-black">+ Create New</Button>
       </Link>
+              </motion.h1>
+      
 
         <div className="mt-5">
           {MenuList.map((menu, index) => (
@@ -68,6 +91,8 @@ function SideBar() {
         <Link href={"/dashboard/upgrade"} className="text-primary text-xs mt-3">
           Upgrade to create more
         </Link>
+
+        
       </div>
     </div>
   );

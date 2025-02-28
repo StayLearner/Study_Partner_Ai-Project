@@ -1,4 +1,5 @@
 "use client"
+import VantaBackground from "@/app/course/[courseId]/_components/VantaGlobeBackground";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import React from "react";
@@ -19,6 +20,7 @@ const OnCheckoutClick=async() => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
+    <VantaBackground/>
       <h2 className="font-medium text-3xl">Plans</h2>
       <p className="text-gray-600">
         Update your plan to generate unlimited courses for your exam
@@ -26,7 +28,7 @@ const OnCheckoutClick=async() => {
 
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:items-center">
         {/* Free Plan Card */}
-        <div className="rounded-2xl border border-gray-200 p-6 shadow-md">
+        <div className="rounded-2xl p-6 shadow-md border border-gray-300  backdrop-blur-md">
           <div className="text-center">
             <h2 className="text-lg font-medium text-gray-900">Free</h2>
             <p className="text-3xl font-semibold">0$ <span className="text-sm">/month</span></p>
@@ -43,7 +45,7 @@ const OnCheckoutClick=async() => {
         </div>
 
         {/* Monthly Plan Card */}
-        <div className="rounded-2xl border border-gray-200 p-6 shadow-md">
+        <div className="rounded-2xl p-6 shadow-md border border-gray-300  backdrop-blur-md">
           <div className="text-center">
             <h2 className="text-lg font-medium text-gray-900">Monthly</h2>
             <p className="text-3xl font-semibold">9.99$ <span className="text-sm">/Monthly</span></p>

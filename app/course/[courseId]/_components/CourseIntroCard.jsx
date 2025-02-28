@@ -10,7 +10,7 @@ function CourseIntroCard({ course }) {
         background: "linear-gradient(to right, rgb(233, 220, 201), rgba(255, 255, 255, 0))"
       }}
     >
-      <Image src={'/knowledge.png'} alt="Course Icon" width={70} height={70} />
+      <Image src={'/knowledge1.png'} alt="Course Icon" width={70} height={70} />
 
       <div>
         <h2 className='font-bold text-2xl text-black '>{course?.courselayout?.courseTitle}</h2>
