@@ -6,7 +6,9 @@ import React from 'react'
 
 function CourseCardItem({ course }) {
   return (
-    <div className='border border-gray-300 rounded-lg shadow-lg p-5 backdrop-blur-md flex flex-col justify-between h-full'>
+    <div className='border border-gray-300 rounded-lg shadow-lg p-5 backdrop-blur-md flex flex-col justify-between h-full 
+      w-full max-w-xs min-h-[180px] mx-auto sm:w-[260px] md:w-[280px]'>
+      
       <div>
         <div className='flex justify-between items-center'>
           <Image src={'/knowledge.png'} alt='other' width={50} height={50} />
@@ -16,8 +18,8 @@ function CourseCardItem({ course }) {
         <p className='text-sm line-clamp-2 text-gray-600 mt-2'>{course?.courselayout?.courseSummary}</p>
       </div>
 
-      {/* 🔹 Footer Section - Fixed height ensures uniformity */}
-      <div className='mt-auto flex justify-between items-center pt-3'>
+      {/* 🔹 Footer Section - Responsive Fix */}
+      <div className='mt-auto flex flex-wrap justify-between items-center pt-3'>
         <h2 className='text-lg text-gray-900'>Total Chapter: {course?.courselayout?.chapters?.length}</h2>
 
         {course?.status === 'Generating' ? (
@@ -27,7 +29,7 @@ function CourseCardItem({ course }) {
           </h2>
         ) : (
           <Link href={'/course/' + course?.courseId}>
-            <Button className="bg-black hover:bg-teal-400 text-white shadow-md">View</Button>
+            <Button className="bg-black hover:bg-teal-400 text-white shadow-md w-full sm:w-auto">View</Button>
           </Link>
         )}
       </div>
