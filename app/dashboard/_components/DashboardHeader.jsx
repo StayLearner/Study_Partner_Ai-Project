@@ -45,9 +45,9 @@ function DashboardHeader() {
         Upgrade Your Learning Experience - The Smart Way!
       </motion.h1>
 
-      {/* Sexy Date-Time Section */}
+      {/* Clock - Hidden on Mobile, Visible on Larger Screens */}
       <motion.div
-        className="px-4 py-2 backdrop-blur-md bg-white/20  rounded-lg text- text-sm shadow-md"
+        className="px-4 py-2 backdrop-blur-md bg-white/20 rounded-lg text-sm shadow-md hidden sm:block"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -61,7 +61,6 @@ function DashboardHeader() {
         whileTap={{ scale: 0.95 }}
         className="cursor-pointer"
       >
-       
         <UserButton />
       </motion.div>
     </motion.header>
