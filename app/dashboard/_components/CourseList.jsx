@@ -4,7 +4,7 @@ import { useUser } from '@clerk/nextjs';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import CourseCardItem from './CourseCardItem';
-import { RefreshCw, Menu, Plus, User2Icon, Shield, UserCircle } from 'lucide-react'; // Added Plus icon
+import { RefreshCw, Menu, Plus, UserCircle, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CourseCountContext } from '@/app/_context/CourseCountContext';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
@@ -32,18 +32,22 @@ function CourseList() {
 
   return (
     <div className='mt-10'>
-      {/* Header with Refresh Button (Desktop) and Dropdown (Mobile) */}
+      {/* Header with Refresh Button (Desktop) and Mobile Controls */}
       <h2 className='font-bold text-2xl flex justify-between items-center'>
         Study Materials
-        
-        {/* Show Create Button & Dropdown Menu on Mobile */}
+
+        {/* Mobile Controls: Create, Refresh, Dropdown */}
         <div className="md:hidden flex gap-2">
           <Button asChild variant="outline" className="border-black text-white bg-black text-lg">
-            <Link href="/create">
-              + Create New
-            </Link>
+            <Link href="/create">+ Create</Link>
           </Button>
-          
+
+          {/* Mobile Refresh Button */}
+          <Button variant="outline" onClick={GetCourseList} className="border-black text-black text-lg">
+            <RefreshCw />
+          </Button>
+
+          {/* Mobile Dropdown Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="border-black text-black text-lg">
@@ -51,26 +55,21 @@ function CourseList() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              {/* <DropdownMenuItem asChild>
-                <Link href="/create" className='font-medium flex items-center gap-2'>
-                  Create
-                </Link>
-              </DropdownMenuItem> */}
               <DropdownMenuItem asChild>
-                <Link href="/dashboard/upgrade" className='font-medium '>
-                <Shield/>
-                Upgrade</Link>
+                <Link href="/dashboard/upgrade" className='font-medium flex items-center gap-2'>
+                  <Shield /> Upgrade
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/dashboard/profile" className='font-medium'>
-                <UserCircle/>
-                Profile</Link>
+                <Link href="/dashboard/profile" className='font-medium flex items-center gap-2'>
+                  <UserCircle /> Profile
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
 
-        {/* Refresh Button for Larger Screens */}
+        {/* Desktop Refresh Button */}
         <Button 
           variant="outline" 
           onClick={GetCourseList} 
