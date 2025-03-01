@@ -45,7 +45,7 @@ function SideBar() {
     className="flex items-center gap-2"
   >
     <Image src="/logo.svg" alt="logo" width={40} height={40} />
-    <h1 className="text-2xl font-bold text-blue-700">Study Smart</h1>
+    <h1 className="text-2xl font-bold text-blue-700">Study Partner</h1>
   </motion.div>
 </Link>
 
@@ -86,7 +86,7 @@ function SideBar() {
       <div className="border p-3 bg-slate-100 rounded-lg absolute bottom-10 w-[85%]">
         <h2 className="text-lg mb-2">Available Credits : {(20-totalCourse)}</h2>
         <Progress value={(totalCourse/20)*100}  />
-        <h2 className="text-sm">{totalCourse} ot of 5 credits used</h2>
+        <h2 className="text-sm">{totalCourse} out of 20 credits used</h2>
 
         <Link href={"/dashboard/upgrade"} className="text-primary text-xs mt-3">
           Upgrade to create more

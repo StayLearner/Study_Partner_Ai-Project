@@ -1,18 +1,27 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/nextjs";
-export const metadata = {
-  title: 'Your Page Title',
-  description: 'Your Page Description',
-};
+import { GoogleGeminiEffect } from "@/components/ui/google-gemini-effect";
+import VantaBackground from "./course/[courseId]/_components/VantaGlobeBackground";
+
+import LandingPage from "./landing/LandingPage";
+import Header from "./landing/DashboardHeaderLanding";
+import Navbar from "./landing/DashboardHeaderLanding";
+import Footer from "./landing/Footer";
+
 export default function Home() {
   return (
-      <div>
-      <h2> Hello this is my new project </h2>
-      {/* <Button variant="outline"> Click Me </Button> */}
-      <Button> Click </Button>
+    <div className="relative min-h-screen">
+      {/* Vanta.js Background - Positioned behind everything */}
+      <div className="absolute inset-0 -z-10">
+        <VantaBackground />
+       
+      </div>
 
-      <UserButton/>
+       <Navbar/>
+      {/* Landing Page Content - Positioned on top with transparency */}
+      <div className="relative z-10   min-h-screen flex justify-center items-center">
+        <LandingPage />
+      </div>
+       
+       <Footer/>
     </div>
   );
 }
