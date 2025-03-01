@@ -1,8 +1,6 @@
-import { GoogleGeminiEffect } from "@/components/ui/google-gemini-effect";
-import VantaBackground from "./course/[courseId]/_components/VantaGlobeBackground";
 
+import VantaBackground from "./course/[courseId]/_components/VantaGlobeBackground";
 import LandingPage from "./landing/LandingPage";
-import Header from "./landing/DashboardHeaderLanding";
 import Navbar from "./landing/DashboardHeaderLanding";
 import Footer from "./landing/Footer";
 
