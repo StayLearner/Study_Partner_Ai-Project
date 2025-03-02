@@ -31,7 +31,7 @@ function Create() {
             [fieldName]:fieldValue
         }))
         
-        console.log(formData);
+        // console.log(formData);
       }
 
 
@@ -56,10 +56,10 @@ function Create() {
     //Toast Notification
     toast("Your course content is generating, Click on Refresh Button")
 
-     console.log(result.data.result.resp);
+    //  console.log(result.data.result.resp);
 
 
-        console.log('Course outline generated:', result.data);
+        // console.log('Course outline generated:', result.data);
     }catch (error) {
       console.log('Error generating course outline:', error.response || error.message);
     }

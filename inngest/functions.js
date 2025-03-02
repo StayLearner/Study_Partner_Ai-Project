@@ -47,7 +47,7 @@ export const CreateNewUser = inngest.createFunction(
           .select()
           .from(USER_TABLE)
           .where(eq(USER_TABLE.email, user?.primaryEmailAddress?.emailAddress));
-        console.log(result);
+        // console.log(result);
 
         if (result?.length == 0) {
           //if not then add to database

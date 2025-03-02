@@ -132,7 +132,7 @@ function StudyMaterialSection({ courseId, course }) {
         studyType: 'ALL',
       });
 
-      console.log('API Response:', result?.data);
+      // console.log('API Response:', result?.data);
       
       setStudyTypeContent(result.data || {}); // Ensure it's an object
     } catch (error) {

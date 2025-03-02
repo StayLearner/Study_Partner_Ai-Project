@@ -28,9 +28,9 @@ useEffect(() => {
 
         setQuizData(result.data); 
         setQuiz(result.data?.content?.quiz)
-        console.log(result.data?.content?.question);
+        // console.log(result.data?.content?.question);
         
-         console.log(result + "hello result");
+        //  console.log(result + "hello result");
         
       }
   return (

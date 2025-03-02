@@ -18,7 +18,7 @@ function MaterialCardItem({ item, studyTypeContent, course, updateStudyContent,r
       .map((chapter) => chapter.chapter_Title || chapter.chapterTitle)
       .join(",");
 
-    console.log("Chapters:", chapters);
+    // console.log("Chapters:", chapters);
 
     try {
       const result = await axios.post("/api/study-type-content", {
@@ -27,7 +27,7 @@ function MaterialCardItem({ item, studyTypeContent, course, updateStudyContent,r
         chapters: chapters,
       });
 
-      console.log("API Worked", result);
+      // console.log("API Worked", result);
 
       // Update studyTypeContent in the parent component
       updateStudyContent(item.type, result.data);

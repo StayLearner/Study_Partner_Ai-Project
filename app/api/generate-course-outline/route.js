@@ -45,7 +45,7 @@ const result=await inngest.send({
         course:dbResult[0].resp
     }
 })
-    console.log(result)
+    // console.log(result)
 
 
     return NextResponse.json({result:dbResult[0]})

@@ -13,7 +13,7 @@ const OnCheckoutClick=async() => {
     priceId:process.env.RAZOR_PRICE_ID_MONTHLY
   });
 
-  console.log(result.data);
+  // console.log(result.data);
   
 }
 

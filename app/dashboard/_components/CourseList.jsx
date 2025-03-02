@@ -24,7 +24,7 @@ function CourseList() {
     setLoading(true);
     const result = await axios.post('/api/courses', { createdBy: user?.primaryEmailAddress?.emailAddress });
 
-    console.log("getCourseList ", result);
+    // console.log("getCourseList ", result);
     setCourseList(result.data.result);
     setLoading(false);
     setTotalCourse(result.data.result?.length);
