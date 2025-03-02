@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import { Menu, X, ArrowRight, Book, Github, Coffee } from "lucide-react";
+import { Menu, X, ArrowRight, Book, Github, Coffee, MailPlus } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +26,14 @@ const Navbar = () => {
         >
           <Book className="w-5 h-5" />
           <span>Documentation</span>
+        </a>
+
+        <a
+          href="https://wa.link/n6hutt"
+          className="hover:text-blue-500 transition duration-200 text-lg flex items-center space-x-2"
+        >
+          <MailPlus className="w-5 h-5" />
+          <span>Write a Review</span>
         </a>
 
         <a
@@ -65,6 +73,16 @@ const Navbar = () => {
         >
           <Book className="w-5 h-5" />
           <span>Documentation</span>
+        </a>
+
+
+         
+        <a
+           href="https://wa.link/n6hutt"
+          className="hover:text-blue-500 transition duration-200 text-lg flex items-center space-x-2"
+        >
+          <MailPlus className="w-5 h-5" />
+          <span>Write a Review</span>
         </a>
 
         <a
