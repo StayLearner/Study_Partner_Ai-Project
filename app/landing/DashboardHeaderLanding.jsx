@@ -13,7 +13,7 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <div className="hidden md:flex space-x-10 text-gray-900 font-semibold">
         <a
-          href="https://github.com/StayLearner/Ai_Study_Helper_Project"
+          href="https://github.com/StayLearner/Study_Partner_Ai-Project"
           className="hover:text-blue-500 transition duration-200 text-lg flex items-center space-x-2"
         >
           <Github className="w-5 h-5" />
@@ -60,7 +60,7 @@ const Navbar = () => {
         } py-6 flex flex-col items-center space-y-4 md:hidden z-40`}
       >
         <a
-          href="https://github.com/StayLearner/Ai_Study_Helper_Project"
+          href="https://github.com/StayLearner/Study_Partner_Ai-Project"
           className="text-gray-900 hover:text-blue-500 transition duration-200 text-lg flex items-center space-x-2"
         >
           <Github className="w-5 h-5" />

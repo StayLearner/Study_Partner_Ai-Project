@@ -18,11 +18,11 @@ function SideBar() {
       icon: LayoutDashboard,
       path: "/dashboard",
     },
-    {
-      name: "Upgrade",
-      icon: Shield,
-      path: "/dashboard/upgrade",
-    },
+    // {
+    //   name: "Upgrade",
+    //   icon: Shield,
+    //   path: "/dashboard/upgrade",
+    // },
     {
       name: "Profile",
       icon: UserCircle,
@@ -82,7 +82,7 @@ function SideBar() {
           ))}
         </div>
       </div>
-
+{/* 
       <div className="border p-3 bg-slate-100 rounded-lg absolute bottom-10 w-[85%]">
         <h2 className="text-lg mb-2">Available Credits : {(20-totalCourse)}</h2>
         <Progress value={(totalCourse/20)*100}  />
@@ -94,6 +94,7 @@ function SideBar() {
 
         
       </div>
+       */}
     </div>
   );
 }
