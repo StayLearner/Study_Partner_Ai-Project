@@ -71,9 +71,9 @@ function CourseList() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem asChild>
-                <Link href="/dashboard/upgrade" className='font-medium flex items-center gap-2'>
+                {/* <Link href="/dashboard/upgrade" className='font-medium flex items-center gap-2'>
                   <Shield /> Upgrade
-                </Link>
+                </Link> */}
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="/dashboard/profile" className='font-medium flex items-center gap-2'>
