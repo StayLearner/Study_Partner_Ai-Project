@@ -3,7 +3,7 @@
 import { CourseCountContext } from "@/app/_context/CourseCountContext";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { icons, LayoutDashboard, Shield, UserCircle } from "lucide-react";
+import { icons, LayoutDashboard, Shield, UserCircle, SlidersHorizontal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,15 +18,15 @@ function SideBar() {
       icon: LayoutDashboard,
       path: "/dashboard",
     },
-    // {
-    //   name: "Upgrade",
-    //   icon: Shield,
-    //   path: "/dashboard/upgrade",
-    // },
     {
       name: "Profile",
       icon: UserCircle,
       path: "/dashboard/profile",
+    },
+    {
+      name: "Security",
+      icon: Shield,
+      path: "/dashboard/security",
     },
   ];
 
