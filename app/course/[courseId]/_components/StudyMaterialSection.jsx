@@ -90,6 +90,8 @@ import MaterialCardItem from './MaterialCardItem';
 import axios from 'axios';
 import Link from 'next/link';
 
+import { showErrorToast } from '@/lib/toast';
+
 function StudyMaterialSection({ courseId, course }) {
   const [studyTypeContent, setStudyTypeContent] = useState({});
 
@@ -136,7 +138,7 @@ function StudyMaterialSection({ courseId, course }) {
       
       setStudyTypeContent(result.data || {}); // Ensure it's an object
     } catch (error) {
-      console.error('Error fetching study materials:', error);
+      showErrorToast('Failed to load study materials', error);
     }
   };
 

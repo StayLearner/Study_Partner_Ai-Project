@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 
+import { showErrorToast } from '@/lib/toast';
+
 const ViewNotes = () => {
   const { courseId } = useParams();
   const router = useRouter();
@@ -22,7 +24,7 @@ const ViewNotes = () => {
       });
       setNotes(result?.data || []);
     } catch (error) {
-      console.error("Error fetching notes:", error);
+      showErrorToast("Failed to fetch notes", error);
     }
   };
 
@@ -40,13 +42,22 @@ const ViewNotes = () => {
   
       content = content.replace(/"}$/, "");
       // Extract only the JSON part if improperly formatted
-      const jsonMatch = content.match(/\[{.*}\]/);
+      // Use [\s\S] instead of . to match across newlines
+      const jsonMatch = content.match(/\[[\s\S]*\]/);
       if (jsonMatch) {
-        const jsonString = jsonMatch[0];
-        const jsonArray = JSON.parse(jsonString);
-        
-        // Concatenate contents properly
-        content = jsonArray.map(item => `<h2>${item.title}</h2><p>${item.content}</p>`).join("");
+        try {
+          const jsonString = jsonMatch[0];
+          const jsonArray = JSON.parse(jsonString);
+          if (Array.isArray(jsonArray)) {
+            // Concatenate contents properly
+            content = jsonArray
+              .map(item => `<h2>${item.title || ""}</h2><p>${item.content || ""}</p>`)
+              .join("");
+          }
+        } catch (jsonErr) {
+          // JSON was malformed — leave content as-is and let HTML formatting handle it
+          console.warn("Notes JSON parse skipped (not valid JSON array):", jsonErr.message);
+        }
       }
   
       // Apply formatting

@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation';
 import { Loader } from 'lucide-react';
 import { toast } from 'sonner';
 
+import { withToastPromise } from '@/lib/toast';
+
 
 function Create() {
       const [step,setStep]=useState(0);
@@ -31,7 +33,6 @@ function Create() {
             [fieldName]:fieldValue
         }))
         
-        // console.log(formData);
       }
 
 
@@ -42,30 +43,29 @@ function Create() {
     * Used to save User Input and Generate Course Layout using Ai
     */
     const GenerateCourseOutline= async() =>{
-      try{
       const courseId=uuidv4();
-       setLoading(true);
-     const result= await axios.post('/api/generate-course-outline',{
-      courseId:courseId,
-      ...formData,
-      createdBy:user?.primaryEmailAddress?.emailAddress
-     });
-     setLoading(false);
-     router.replace('/dashboard');
-
-    //Toast Notification
-    toast("Your course content is generating, Click on Refresh Button")
-
-    //  console.log(result.data.result.resp);
-
-
-        // console.log('Course outline generated:', result.data);
-    }catch (error) {
-      console.log('Error generating course outline:', error.response || error.message);
-    }
-  };
-  
-
+      setLoading(true);
+      
+      try {
+        await withToastPromise(
+          axios.post('/api/generate-course-outline',{
+            courseId:courseId,
+            ...formData,
+            createdBy:user?.primaryEmailAddress?.emailAddress
+          }),
+          {
+            loading: 'Generating course outline...',
+            success: 'Course outline created! Content is generating in background.',
+            error: 'Failed to generate course outline.'
+          }
+        );
+        router.replace('/dashboard');
+      } catch (error) {
+        console.log('Error generating course outline:', error?.response?.data || error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
 
   return (

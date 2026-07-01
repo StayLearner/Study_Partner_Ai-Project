@@ -20,8 +20,15 @@ const Toaster = ({
             "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
           cancelButton:
             "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+          success: "group-[.toaster]:bg-green-500 group-[.toaster]:text-white group-[.toaster]:border-green-600 font-medium",
+          error: "group-[.toaster]:bg-red-500 group-[.toaster]:text-white group-[.toaster]:border-red-600 font-medium",
+          warning: "group-[.toaster]:bg-amber-500 group-[.toaster]:text-white group-[.toaster]:border-amber-600 font-medium",
+          info: "group-[.toaster]:bg-blue-500 group-[.toaster]:text-white group-[.toaster]:border-blue-600 font-medium",
         },
       }}
+      expand={true}
+      visibleToasts={5}
+      gap={8}
       {...props} />)
   );
 }

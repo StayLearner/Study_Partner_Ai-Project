@@ -3,17 +3,26 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import React from "react";
 
-
+import { withToastPromise } from '@/lib/toast';
 
 function Upgrade() {
 
 const OnCheckoutClick=async() => {
-  const result=await axios.post('/api/payment/checkout',{
-    priceId:process.env.RAZOR_PRICE_ID_MONTHLY
-  });
-
-  // console.log(result.data);
-  
+  try {
+    const result = await withToastPromise(
+      axios.post('/api/payment/checkout',{
+        priceId:process.env.RAZOR_PRICE_ID_MONTHLY
+      }),
+      {
+        loading: 'Initializing checkout...',
+        success: 'Checkout ready! Redirecting...',
+        error: 'Failed to start checkout process.'
+      }
+    );
+    // console.log(result.data);
+  } catch (error) {
+    console.error('Checkout error:', error);
+  }
 }
 
 

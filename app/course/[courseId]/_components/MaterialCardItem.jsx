@@ -7,6 +7,8 @@ import { RefreshCcw } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
+import { withToastPromise } from '@/lib/toast';
+
 function MaterialCardItem({ item, studyTypeContent, course, updateStudyContent,refreshData }) {
   const [loading, setLoading] = useState(false);
 
@@ -21,11 +23,18 @@ function MaterialCardItem({ item, studyTypeContent, course, updateStudyContent,r
     // console.log("Chapters:", chapters);
 
     try {
-      const result = await axios.post("/api/study-type-content", {
-        courseId: course?.courseId,
-        type: item.type,
-        chapters: chapters,
-      });
+      const result = await withToastPromise(
+        axios.post("/api/study-type-content", {
+          courseId: course?.courseId,
+          type: item.type,
+          chapters: chapters,
+        }),
+        {
+          loading: `Generating ${item.name}...`,
+          success: `${item.name} generated successfully!`,
+          error: `Failed to generate ${item.name}.`
+        }
+      );
 
       // console.log("API Worked", result);
 

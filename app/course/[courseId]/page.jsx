@@ -2,10 +2,11 @@
 
 import axios from 'axios';
 import { useParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import CourseIntroCard from './_components/CourseIntroCard';
 import StudyMaterialSection from './_components/StudyMaterialSection';
 import ChapterList from './_components/ChapterList';
+import { withToastPromise } from '@/lib/toast';
 
 
 
@@ -14,14 +15,28 @@ function Course() {
 
     const {courseId}= useParams();
     const [course,setCourse]= useState();
+    const initialized = useRef(false);
+
     useEffect(()=>{
+        if (initialized.current) return;
+        initialized.current = true;
         GetCourse();
     },[])
 
      const GetCourse=async () => {
-         const result= await axios.get('/api/courses?courseId='+courseId)
-        //  console.log(result);
-         setCourse(result.data.result); 
+        try {
+          const result = await withToastPromise(
+            axios.get('/api/courses?courseId=' + courseId),
+            {
+              loading: 'Loading course data...',
+              success: 'Course loaded!',
+              error: 'Failed to load course.'
+            }
+          );
+          setCourse(result.data.result);
+        } catch (error) {
+          console.error('Error loading course:', error);
+        }
      }
   
     return (
@@ -41,4 +56,4 @@ function Course() {
   )
 }
 
-export default Course
+export default Course

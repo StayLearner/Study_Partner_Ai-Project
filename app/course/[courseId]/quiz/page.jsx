@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { useParams } from 'next/navigation';
+import { showErrorToast } from '@/lib/toast';
 
 import React, { useEffect, useState } from 'react'
 import StepProgress from '../_components/StepProgress';
@@ -17,21 +18,18 @@ useEffect(() => {
   GetQuiz()
 
 }, [])
-
       const GetQuiz=async()=>{
-        const result=await axios.post('/api/study-type',{
-            courseId:courseId,
-            studyType:'Quiz'
-        })
+        try {
+          const result=await axios.post('/api/study-type',{
+              courseId:courseId,
+              studyType:'Quiz'
+          })
 
-         
-
-        setQuizData(result.data); 
-        setQuiz(result.data?.content?.quiz)
-        // console.log(result.data?.content?.question);
-        
-        //  console.log(result + "hello result");
-        
+          setQuizData(result.data); 
+          setQuiz(result.data?.content?.quiz)
+        } catch (error) {
+          showErrorToast('Failed to load quiz content', error);
+        }
       }
   return (
     <div>

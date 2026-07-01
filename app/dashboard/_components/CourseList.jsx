@@ -2,32 +2,47 @@
 
 import { useUser } from '@clerk/nextjs';
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import CourseCardItem from './CourseCardItem';
 import { RefreshCw, Menu, Plus, UserCircle, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CourseCountContext } from '@/app/_context/CourseCountContext';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
+import { withToastPromise } from '@/lib/toast';
 
 function CourseList() {
   const { user } = useUser();
   const [courseList, setCourseList] = useState([]);
   const [loading, setLoading] = useState(false);
   const { totalCourse, setTotalCourse } = useContext(CourseCountContext);
+  const initialized = useRef(false);
 
   useEffect(() => {
-    user && GetCourseList();
+    if (!user) return;
+    if (initialized.current) return;
+    initialized.current = true;
+    GetCourseList();
   }, [user]);
 
   const GetCourseList = async () => {
     setLoading(true);
-    const result = await axios.post('/api/courses', { createdBy: user?.primaryEmailAddress?.emailAddress });
-
-    // console.log("getCourseList ", result);
-    setCourseList(result.data.result);
-    setLoading(false);
-    setTotalCourse(result.data.result?.length);
+    try {
+      const result = await withToastPromise(
+        axios.post('/api/courses', { createdBy: user?.primaryEmailAddress?.emailAddress }),
+        {
+          loading: 'Fetching study materials...',
+          success: 'Materials loaded successfully!',
+          error: 'Failed to fetch study materials.'
+        }
+      );
+      setCourseList(result.data.result);
+      setTotalCourse(result.data.result?.length);
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
