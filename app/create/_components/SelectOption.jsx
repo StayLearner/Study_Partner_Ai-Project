@@ -34,11 +34,11 @@ function SelectOption({selectedStudyType}) {
         <h2 className='text-center mb-2 text-lg'>For Which You Want to Create Your Study Material?</h2>
         <div className='grid grid-cols-2 mt-5 md:grid-cols-3 lg:grid-cols-5 gap-5'>
             {Options.map((option,index)=>(
-                <div key={index} 
-                className={`p-4 flex flex-col items-center justify-center border rounded-xl hover:border-teal-500 cursor-pointer ${option?.name==selectedOption&&'border-teal-500'}`}
+            <div key={index} 
+                className={`p-3 sm:p-4 flex flex-col items-center justify-center border rounded-xl hover:border-teal-500 cursor-pointer transition-colors min-h-[80px] sm:min-h-[100px] ${option?.name==selectedOption&&'border-teal-500 bg-teal-50'}`}
                 onClick={()=>{setSelectedOption(option.name);selectedStudyType(option.name)}}>
-                    <Image src={option.icon} alt={option.name} width={50} height={50}/>
-                    <h2 className='text-sm mt-2'>{option.name}</h2>
+                    <Image src={option.icon} alt={option.name} width={50} height={50} className="w-9 h-9 sm:w-12 sm:h-12 object-contain"/>
+                    <h2 className='text-xs sm:text-sm mt-2 text-center font-medium'>{option.name}</h2>
                 </div>
             ))}
         </div>

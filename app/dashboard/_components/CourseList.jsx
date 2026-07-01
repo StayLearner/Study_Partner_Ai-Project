@@ -48,7 +48,7 @@ function CourseList() {
   return (
     <div className='mt-10'>
       {/* Header with Refresh Button (Desktop) and Mobile Controls */}
-      <h2 className='font-bold text-2xl flex justify-between items-center'>
+      <h2 className='font-bold text-xl sm:text-2xl flex justify-between items-center gap-2'>
         Study Materials
 
         {/* Mobile Controls: Create, Refresh, Dropdown */}
@@ -95,7 +95,7 @@ function CourseList() {
       </h2>
 
       {/* Course Cards */}
-      <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mt-4 gap-5'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-4 gap-5'>
         {!loading ? (
           courseList?.map((course, index) => (
             <CourseCardItem course={course} key={index} />

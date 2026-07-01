@@ -41,11 +41,11 @@ function Course() {
      }
   
     return (
-    <div>
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
       <div className='mb-4'>
         <BackButton fallback="/dashboard" />
       </div>
-        <div className=''>
+        <div>
           
         <CourseIntroCard course={course} />
 

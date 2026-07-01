@@ -33,11 +33,11 @@ useEffect(() => {
         }
       }
   return (
-    <div>
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-12">
       <div className='mb-4'>
         <BackButton fallback={`/course/${courseId}`} />
       </div>
-       <h2 className='font-bold text-2xl'>Quiz</h2>
+       <h2 className='font-bold text-xl sm:text-2xl mb-4'>Quiz</h2>
 
        <StepProgress data={quiz}  stepCount={stepCount} setStepCount={(value)=> setStepCount(value)}/>
 

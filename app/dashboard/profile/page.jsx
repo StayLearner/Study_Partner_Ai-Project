@@ -88,7 +88,7 @@ function InfoField({ icon: Icon, label, value, copyable, accentColor = "border-b
         </div>
         <div className="min-w-0">
           <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">{label}</p>
-          <p className="text-sm font-semibold text-gray-800 truncate max-w-[260px]">{value || "—"}</p>
+          <p className="text-sm font-semibold text-gray-800 truncate max-w-[160px] sm:max-w-[260px]">{value || "—"}</p>
         </div>
       </div>
       {/* Copy button */}
@@ -132,7 +132,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto space-y-8 pb-16">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-8 pb-16">
 
       {/* Back Button */}
       <div>
@@ -214,7 +214,7 @@ export default function ProfilePage() {
       {/* ── STATS GRID (2 cards only) ───────────────────────── */}
       <div>
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Activity Overview</h2>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <StatCard
             icon={BookOpen}
             label="Courses Created"

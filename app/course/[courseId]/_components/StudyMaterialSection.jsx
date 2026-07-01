@@ -148,11 +148,11 @@ function StudyMaterialSection({ courseId, course }) {
 
   return (
     <div className="mt-5 text-center">
-      <h2 className="font-medium text-xl">Study Material</h2>
+      <h2 className="font-medium text-lg sm:text-xl">Study Material</h2>
 
       {/* Centering the card container */}
       <div className="flex justify-center mt-3">
-        <div className="w-full max-w-sm">
+        <div className="w-full max-w-lg">
           {MaterialList.map((item, index) => (
             <Link key={index} href={`/course/${courseId}${item.path}`}>
               <MaterialCardItem
