@@ -1,5 +1,4 @@
 "use client"
-import VantaBackground from "@/app/course/[courseId]/_components/VantaGlobeBackground";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import React from "react";
@@ -20,7 +19,6 @@ const OnCheckoutClick=async() => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-    <VantaBackground/>
       <h2 className="font-medium text-3xl">Plans</h2>
       <p className="text-gray-600">
         Update your plan to generate unlimited courses for your exam

@@ -1,9 +1,10 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import {Outfit, Outfit} from 'next/font/google'
+import { Outfit } from 'next/font/google'
 import { ClerkProvider } from "@clerk/nextjs";
 import Provider from "./provider";
 import { Toaster } from "@/components/ui/sonner";
+import { BackgroundProvider } from "@/components/backgrounds";
 
 export const metadata = {
   title: "Study Partner",
@@ -19,10 +20,12 @@ export default function RootLayout({ children }) {
       <body
         className={outfit.className}
       >
-
-       <Provider>
-        {children}
-       </Provider>
+        <BackgroundProvider />
+        <div className="relative z-10 min-h-screen">
+          <Provider>
+            {children}
+          </Provider>
+        </div>
         
         <Toaster/>
 
