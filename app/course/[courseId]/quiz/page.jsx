@@ -3,6 +3,7 @@
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import { showErrorToast } from '@/lib/toast';
+import BackButton from '@/components/ui/back-button';
 
 import React, { useEffect, useState } from 'react'
 import StepProgress from '../_components/StepProgress';
@@ -33,6 +34,9 @@ useEffect(() => {
       }
   return (
     <div>
+      <div className='mb-4'>
+        <BackButton fallback={`/course/${courseId}`} />
+      </div>
        <h2 className='font-bold text-2xl'>Quiz</h2>
 
        <StepProgress data={quiz}  stepCount={stepCount} setStepCount={(value)=> setStepCount(value)}/>

@@ -12,6 +12,7 @@ import { Loader } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { withToastPromise } from '@/lib/toast';
+import BackButton from '@/components/ui/back-button';
 
 
 function Create() {
@@ -70,6 +71,9 @@ function Create() {
 
   return (
     <div className='flex flex-col items-center p-5 md:px-24 lg:px-36 mt-20'>
+        <div className='w-full mb-6'>
+          <BackButton fallback="/dashboard" />
+        </div>
         <h2 className='font-bold text-4xl text-primary'>Start Building new Material</h2>
         <p className='text-gray-500 text-lg'>Fill all details in order to generate study material for learn</p>
     

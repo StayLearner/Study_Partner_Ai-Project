@@ -7,6 +7,7 @@ import CourseIntroCard from './_components/CourseIntroCard';
 import StudyMaterialSection from './_components/StudyMaterialSection';
 import ChapterList from './_components/ChapterList';
 import { withToastPromise } from '@/lib/toast';
+import BackButton from '@/components/ui/back-button';
 
 
 
@@ -41,7 +42,9 @@ function Course() {
   
     return (
     <div>
-      
+      <div className='mb-4'>
+        <BackButton fallback="/dashboard" />
+      </div>
         <div className=''>
           
         <CourseIntroCard course={course} />

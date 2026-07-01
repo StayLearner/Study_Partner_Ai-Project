@@ -5,6 +5,7 @@ import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 
 import { showErrorToast } from '@/lib/toast';
+import BackButton from '@/components/ui/back-button';
 
 const ViewNotes = () => {
   const { courseId } = useParams();
@@ -80,6 +81,10 @@ const ViewNotes = () => {
   return (
     <div className="relative">
       <div className="max-w-4xl mx-auto p-6">
+        {/* Back Button */}
+        <div className="mb-4">
+          <BackButton fallback={`/course/${courseId}`} />
+        </div>
         {/* Navigation */}
         <div className="flex gap-4 items-center mb-6">
           <button

@@ -4,6 +4,7 @@ import { UserProfile } from "@clerk/nextjs";
 import { motion } from "framer-motion";
 import { Shield } from "lucide-react";
 import { useEffect } from "react";
+import BackButton from "@/components/ui/back-button";
 
 export default function SecurityPage() {
   // Auto-navigate Clerk UserProfile to the Security tab via hash routing
@@ -15,6 +16,10 @@ export default function SecurityPage() {
 
   return (
     <div className="max-w-5xl mx-auto pb-16">
+      {/* Back Button */}
+      <div className="mb-6">
+        <BackButton fallback="/dashboard" />
+      </div>
       {/* Page Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

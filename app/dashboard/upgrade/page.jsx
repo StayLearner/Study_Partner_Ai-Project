@@ -4,6 +4,7 @@ import axios from "axios";
 import React from "react";
 
 import { withToastPromise } from '@/lib/toast';
+import BackButton from '@/components/ui/back-button';
 
 function Upgrade() {
 
@@ -28,6 +29,9 @@ const OnCheckoutClick=async() => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
+      <div className="mb-6">
+        <BackButton fallback="/dashboard" />
+      </div>
       <h2 className="font-medium text-3xl">Plans</h2>
       <p className="text-gray-600">
         Update your plan to generate unlimited courses for your exam

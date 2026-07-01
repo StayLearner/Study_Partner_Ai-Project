@@ -19,6 +19,7 @@ import {
 import { CourseCountContext } from "@/app/_context/CourseCountContext";
 import { UserProfile } from "@clerk/nextjs";
 import Image from "next/image";
+import BackButton from "@/components/ui/back-button";
 
 // ─────────────────────────────────────────────────────────────
 // Skeleton Loader
@@ -132,6 +133,11 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-8 pb-16">
+
+      {/* Back Button */}
+      <div>
+        <BackButton fallback="/dashboard" />
+      </div>
 
       {/* ── PROFILE HEADER ─────────────────────────────────── */}
       <motion.div
