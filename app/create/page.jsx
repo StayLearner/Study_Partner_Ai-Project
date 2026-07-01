@@ -11,6 +11,9 @@ import { useRouter } from 'next/navigation';
 import { Loader } from 'lucide-react';
 import { toast } from 'sonner';
 
+import { withToastPromise } from '@/lib/toast';
+import BackButton from '@/components/ui/back-button';
+
 
 function Create() {
       const [step,setStep]=useState(0);
@@ -31,7 +34,6 @@ function Create() {
             [fieldName]:fieldValue
         }))
         
-        // console.log(formData);
       }
 
 
@@ -42,38 +44,40 @@ function Create() {
     * Used to save User Input and Generate Course Layout using Ai
     */
     const GenerateCourseOutline= async() =>{
-      try{
       const courseId=uuidv4();
-       setLoading(true);
-     const result= await axios.post('/api/generate-course-outline',{
-      courseId:courseId,
-      ...formData,
-      createdBy:user?.primaryEmailAddress?.emailAddress
-     });
-     setLoading(false);
-     router.replace('/dashboard');
-
-    //Toast Notification
-    toast("Your course content is generating, Click on Refresh Button")
-
-    //  console.log(result.data.result.resp);
-
-
-        // console.log('Course outline generated:', result.data);
-    }catch (error) {
-      console.log('Error generating course outline:', error.response || error.message);
-    }
-  };
-  
-
+      setLoading(true);
+      
+      try {
+        await withToastPromise(
+          axios.post('/api/generate-course-outline',{
+            courseId:courseId,
+            ...formData,
+            createdBy:user?.primaryEmailAddress?.emailAddress
+          }),
+          {
+            loading: 'Generating course outline...',
+            success: 'Course outline created! Content is generating in background.',
+            error: 'Failed to generate course outline.'
+          }
+        );
+        router.replace('/dashboard');
+      } catch (error) {
+        console.log('Error generating course outline:', error?.response?.data || error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
 
   return (
-    <div className='flex flex-col items-center p-5 md:px-24 lg:px-36 mt-20'>
-        <h2 className='font-bold text-4xl text-primary'>Start Building new Material</h2>
-        <p className='text-gray-500 text-lg'>Fill all details in order to generate study material for learn</p>
+    <div className='flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-36 pt-8 sm:pt-12 mt-14 sm:mt-16 pb-12'>
+        <div className='w-full mb-6'>
+          <BackButton fallback="/dashboard" />
+        </div>
+        <h2 className='font-bold text-2xl sm:text-3xl md:text-4xl text-primary text-center'>Start Building new Material</h2>
+        <p className='text-gray-500 text-sm sm:text-base md:text-lg mt-2 text-center'>Fill all details in order to generate study material for learning</p>
     
-        <div className='mt-10'>
+        <div className='mt-8 sm:mt-10 w-full'>
             {step==0? <SelectOption selectedStudyType={(value)=>handleUserInput('courseType',value)}/> 
             : <TopicInput
             setTopic={(value)=>handleUserInput('topic',value)}
@@ -82,9 +86,9 @@ function Create() {
         </div>
         
 
-        <div className='flex justify-between w-full mt-32'>
-            {step!=0? <Button variant="outline" onClick={()=> setStep(step-1)}>Previous</Button>:'-'}
-            {step==0? <Button onClick={()=>setStep(step+1)}>Next</Button>:<Button onClick={GenerateCourseOutline} disabled={loading}>
+        <div className='flex flex-wrap justify-between w-full mt-10 sm:mt-16 md:mt-24 gap-3'>
+            {step!=0? <Button variant="outline" onClick={()=> setStep(step-1)}>← Previous</Button>:'-'}
+            {step==0? <Button onClick={()=>setStep(step+1)}>Next →</Button>:<Button onClick={GenerateCourseOutline} disabled={loading}>
             {loading ? <Loader className='animate-spin'/> :'Generate'}  </Button>} 
         </div>
 

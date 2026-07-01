@@ -2,38 +2,53 @@
 
 import { useUser } from '@clerk/nextjs';
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import CourseCardItem from './CourseCardItem';
 import { RefreshCw, Menu, Plus, UserCircle, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CourseCountContext } from '@/app/_context/CourseCountContext';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
+import { withToastPromise } from '@/lib/toast';
 
 function CourseList() {
   const { user } = useUser();
   const [courseList, setCourseList] = useState([]);
   const [loading, setLoading] = useState(false);
   const { totalCourse, setTotalCourse } = useContext(CourseCountContext);
+  const initialized = useRef(false);
 
   useEffect(() => {
-    user && GetCourseList();
+    if (!user) return;
+    if (initialized.current) return;
+    initialized.current = true;
+    GetCourseList();
   }, [user]);
 
   const GetCourseList = async () => {
     setLoading(true);
-    const result = await axios.post('/api/courses', { createdBy: user?.primaryEmailAddress?.emailAddress });
-
-    // console.log("getCourseList ", result);
-    setCourseList(result.data.result);
-    setLoading(false);
-    setTotalCourse(result.data.result?.length);
+    try {
+      const result = await withToastPromise(
+        axios.post('/api/courses', { createdBy: user?.primaryEmailAddress?.emailAddress }),
+        {
+          loading: 'Fetching study materials...',
+          success: 'Materials loaded successfully!',
+          error: 'Failed to fetch study materials.'
+        }
+      );
+      setCourseList(result.data.result);
+      setTotalCourse(result.data.result?.length);
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className='mt-10'>
       {/* Header with Refresh Button (Desktop) and Mobile Controls */}
-      <h2 className='font-bold text-2xl flex justify-between items-center'>
+      <h2 className='font-bold text-xl sm:text-2xl flex justify-between items-center gap-2'>
         Study Materials
 
         {/* Mobile Controls: Create, Refresh, Dropdown */}
@@ -80,7 +95,7 @@ function CourseList() {
       </h2>
 
       {/* Course Cards */}
-      <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mt-4 gap-5'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-4 gap-5'>
         {!loading ? (
           courseList?.map((course, index) => (
             <CourseCardItem course={course} key={index} />

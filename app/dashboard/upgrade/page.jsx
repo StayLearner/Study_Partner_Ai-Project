@@ -1,26 +1,37 @@
 "use client"
-import VantaBackground from "@/app/course/[courseId]/_components/VantaGlobeBackground";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import React from "react";
 
-
+import { withToastPromise } from '@/lib/toast';
+import BackButton from '@/components/ui/back-button';
 
 function Upgrade() {
 
 const OnCheckoutClick=async() => {
-  const result=await axios.post('/api/payment/checkout',{
-    priceId:process.env.RAZOR_PRICE_ID_MONTHLY
-  });
-
-  // console.log(result.data);
-  
+  try {
+    const result = await withToastPromise(
+      axios.post('/api/payment/checkout',{
+        priceId:process.env.RAZOR_PRICE_ID_MONTHLY
+      }),
+      {
+        loading: 'Initializing checkout...',
+        success: 'Checkout ready! Redirecting...',
+        error: 'Failed to start checkout process.'
+      }
+    );
+    // console.log(result.data);
+  } catch (error) {
+    console.error('Checkout error:', error);
+  }
 }
 
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-    <VantaBackground/>
+      <div className="mb-6">
+        <BackButton fallback="/dashboard" />
+      </div>
       <h2 className="font-medium text-3xl">Plans</h2>
       <p className="text-gray-600">
         Update your plan to generate unlimited courses for your exam
